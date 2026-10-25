@@ -194,6 +194,9 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
+ENV UV_PROJECT_ENVIRONMENT=/opt/venv
+
+
 RUN pip install uv
 
 COPY pyproject.toml uv.lock ./
