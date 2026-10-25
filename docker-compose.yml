@@ -1,0 +1,27 @@
+
+services:
+  backend:
+    build: ./docker_django
+    container_name: django-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./docker_django:/app
+      - django_venv:/opt/venv
+
+  frontend:
+    build: ./docker_nextjs
+    container_name: next-frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./docker_nextjs:/app
+      - next_node_modules:/app/node_modules
+      - next_cache:/app/.next
+    depends_on:
+      - backend
+
+volumes:
+  django_venv:
+  next_node_modules:
+  next_cache:
